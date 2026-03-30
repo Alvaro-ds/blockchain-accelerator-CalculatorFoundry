@@ -6,7 +6,6 @@ import "../src/Calculator.sol";
 import "forge-std/Test.sol";
 
 contract CalculatorTest is Test {
-
     Calculator calculator;
     uint256 public firstResultado = 100;
     address public admin = vm.addr(1);
@@ -17,13 +16,12 @@ contract CalculatorTest is Test {
     }
 
     // Unit Testing
-    function testCheckFirstResultado() public view{
+    function testCheckFirstResultado() public view {
         uint256 firstResultado_ = calculator.resultado();
         assert(firstResultado_ == firstResultado);
     }
 
-    function testAddition() public{
-
+    function testAddition() public {
         uint256 firstNumber_ = 5;
         uint256 secondNumber_ = 5;
 
@@ -32,8 +30,7 @@ contract CalculatorTest is Test {
         assert(resultado_ == firstNumber_ + secondNumber_);
     }
 
-    function testSubstraction() public{
-
+    function testSubstraction() public {
         uint256 firstNumber_ = 5;
         uint256 secondNumber_ = 5;
 
@@ -42,8 +39,7 @@ contract CalculatorTest is Test {
         assert(resultado_ == firstNumber_ - secondNumber_);
     }
 
-    function testMultiplier() public{
-
+    function testMultiplier() public {
         uint256 firstNumber_ = 5;
         uint256 secondNumber_ = 5;
 
@@ -53,7 +49,6 @@ contract CalculatorTest is Test {
     }
 
     function testCanNotMultiply2LargeNUmbers() public {
-
         uint256 firstNumber_ = 115792089237316195423570985008687907853269984665640564039457584007913129639934;
         uint256 secondNumber_ = 5;
 
@@ -62,7 +57,6 @@ contract CalculatorTest is Test {
     }
 
     function testIfNotAdminCallDivisionReverts() public {
-
         vm.startPrank(randomUser);
 
         uint256 firstNumber_ = 5;
@@ -74,7 +68,6 @@ contract CalculatorTest is Test {
     }
 
     function testAdminCanCallDivisionCorrectly() public {
-
         vm.startPrank(admin);
 
         uint256 firstNumber_ = 5;
@@ -85,7 +78,6 @@ contract CalculatorTest is Test {
     }
 
     function testDefaultCanNotCallDivisionCorrectly() public {
-
         uint256 firstNumber_ = 5;
         uint256 secondNumber_ = 2;
         console.log(msg.sender);
@@ -93,12 +85,12 @@ contract CalculatorTest is Test {
         calculator.division(firstNumber_, secondNumber_);
     }
 
-    function testDefaultExecutesCorrectly() public{
+    function testDefaultExecutesCorrectly() public {
         vm.startPrank(admin);
-        
+
         uint256 firstNumber_ = 5;
         uint256 secondNumber_ = 2;
-        uint256 resultado_ = calculator.division(firstNumber_, secondNumber_);  
+        uint256 resultado_ = calculator.division(firstNumber_, secondNumber_);
         assert(resultado_ == firstNumber_ / secondNumber_);
 
         vm.stopPrank();
@@ -106,13 +98,13 @@ contract CalculatorTest is Test {
 
     function testCanNotDivideByZero() public {
         vm.startPrank(admin);
-        
+
         uint256 firstNumber_ = 5;
         uint256 secondNumber_ = 0;
 
         vm.expectRevert();
-        calculator.division(firstNumber_, secondNumber_);  
-        
+        calculator.division(firstNumber_, secondNumber_);
+
         vm.stopPrank();
     }
 
@@ -120,13 +112,11 @@ contract CalculatorTest is Test {
     // Fuzzing Testing = random inputs
 
     // Fuzzing Test
-    function testFuzzingDivision (uint256 firstNumber_, uint256 secondNumber_) public{
+    function testFuzzingDivision(uint256 firstNumber_, uint256 secondNumber_) public {
         vm.startPrank(admin);
 
-        calculator.division(firstNumber_, secondNumber_);  
-        
+        calculator.division(firstNumber_, secondNumber_);
+
         vm.stopPrank();
     }
-
-
 }

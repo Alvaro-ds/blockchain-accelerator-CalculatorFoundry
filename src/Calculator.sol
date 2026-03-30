@@ -3,7 +3,6 @@
 pragma solidity 0.8.24;
 
 contract Calculator {
-
     uint256 public resultado;
     address public admin;
 
@@ -18,17 +17,15 @@ contract Calculator {
         _;
     }
 
-
     constructor(uint256 firstResultado_, address admin_) {
         resultado = firstResultado_;
         admin = admin_;
     }
 
-
     // Functions
 
     // 1. Addition
-    function addition(uint256 firstNumber_, uint256 secondNumber_) external returns(uint256 resultado_) {
+    function addition(uint256 firstNumber_, uint256 secondNumber_) external returns (uint256 resultado_) {
         resultado_ = firstNumber_ + secondNumber_;
         resultado = resultado_;
 
@@ -36,7 +33,7 @@ contract Calculator {
     }
 
     // 2. Subtraction
-    function substraction(uint256 firstNumber_, uint256 secondNumber_) external returns(uint256 resultado_) {
+    function substraction(uint256 firstNumber_, uint256 secondNumber_) external returns (uint256 resultado_) {
         resultado_ = firstNumber_ - secondNumber_;
         resultado = resultado_;
 
@@ -44,7 +41,7 @@ contract Calculator {
     }
 
     // 3. Multiplier
-    function multiplier(uint256 firstNumber_, uint256 secondNumber_) external returns(uint256 resultado_) {
+    function multiplier(uint256 firstNumber_, uint256 secondNumber_) external returns (uint256 resultado_) {
         resultado_ = firstNumber_ * secondNumber_;
         resultado = resultado_;
 
@@ -52,8 +49,8 @@ contract Calculator {
     }
 
     // 4. Division
-    function division(uint256 firstNumber_, uint256 secondNumber_) external onlyAdmin returns(uint256 resultado_) {
-        if(secondNumber_ == 0) return 0;
+    function division(uint256 firstNumber_, uint256 secondNumber_) external onlyAdmin returns (uint256 resultado_) {
+        if (secondNumber_ == 0) return 0;
         resultado_ = firstNumber_ / secondNumber_;
         resultado = resultado_;
 
