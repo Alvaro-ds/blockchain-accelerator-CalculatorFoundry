@@ -50,7 +50,7 @@ contract Calculator {
 
     // 4. Division
     function division(uint256 firstNumber_, uint256 secondNumber_) external onlyAdmin returns (uint256 resultado_) {
-        if (secondNumber_ == 0) return 0;
+        if (secondNumber_ == 0) revert();
         resultado_ = firstNumber_ / secondNumber_;
         resultado = resultado_;
 
