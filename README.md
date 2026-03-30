@@ -1,66 +1,109 @@
-## Foundry
+# FIRSTFOUNDRYREPO
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+`FIRSTFOUNDRYREPO` is my first project built with Foundry. It is a simple Solidity smart contract project created to practice contract development, automated testing, and project structure using the Foundry toolchain.
 
-Foundry consists of:
+## Overview
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+The repository contains a `Calculator` smart contract that implements basic arithmetic operations:
 
-## Documentation
+- addition
+- subtraction
+- multiplication
+- division
 
-https://book.getfoundry.sh/
+The contract also stores the latest computed value in `resultado`, assigns an `admin` address during deployment, and restricts the division function so only the admin can execute it.
 
-## Usage
+This project is mainly focused on learning core Solidity and Foundry concepts through a small but complete example.
+
+## Tech Stack
+
+- Solidity `0.8.24`
+- Foundry
+- Forge Standard Library (`forge-std`)
+
+## Project Structure
+
+```text
+.
+|-- src/
+|   `-- Calculator.sol
+|-- test/
+|   `-- CalculatorTest.t.sol
+|-- lib/
+|   `-- forge-std/
+|-- foundry.toml
+`-- README.md
+```
+
+## Smart Contract
+
+The main contract is [src/Calculator.sol](C:/Users/dapiu/Documents/personal/blockchain accelerator/FOUNDRY/BLOQUE 6/FirstFoundryRepo/src/Calculator.sol).
+
+### Features
+
+- stores an initial result value through the constructor
+- stores an admin address
+- updates the latest result after each operation
+- emits events for each arithmetic operation
+- uses access control for division through `onlyAdmin`
+
+## Tests
+
+The test suite is located in [test/CalculatorTest.t.sol](C:/Users/dapiu/Documents/personal/blockchain accelerator/FOUNDRY/BLOQUE 6/FirstFoundryRepo/test/CalculatorTest.t.sol).
+
+It currently covers:
+
+- initial state validation
+- addition, subtraction, and multiplication behavior
+- overflow protection in multiplication
+- admin-only access for division
+- successful division execution by the admin
+- fuzz testing for division inputs
+
+## Foundry Configuration
+
+The Foundry configuration is defined in [foundry.toml](C:/Users/dapiu/Documents/personal/blockchain accelerator/FOUNDRY/BLOQUE 6/FirstFoundryRepo/foundry.toml).
+
+Current settings include:
+
+- source directory: `src`
+- output directory: `out`
+- libraries directory: `lib`
+- fuzz runs: `350`
+
+## Getting Started
 
 ### Build
 
-```shell
-$ forge build
+```bash
+forge build
 ```
 
 ### Test
 
-```shell
-$ forge test
+```bash
+forge test --match-test nameTestFunction
 ```
 
 ### Format
 
-```shell
-$ forge fmt
+```bash
+forge fmt
 ```
 
-### Gas Snapshots
+## Learning Goals
 
-```shell
-$ forge snapshot
-```
+This project helped me practice:
 
-### Anvil
+- writing Solidity smart contracts
+- working with constructors and state variables
+- using modifiers for access control
+- emitting and understanding events
+- writing unit tests with Foundry
+- running fuzz tests
+- organizing a smart contract repository
 
-```shell
-$ anvil
-```
+## Notes
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+- This repository does not currently include deployment scripts.
+- The main purpose of the project is learning and experimenting with Foundry fundamentals.
